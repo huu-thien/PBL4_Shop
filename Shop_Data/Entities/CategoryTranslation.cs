@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shop_Data.Entities
 {
-    public class CategoryTransaction
+    public class CategoryTranslation
     {
         public int Id { get; set; }
         public int CategoryId { get; set; }

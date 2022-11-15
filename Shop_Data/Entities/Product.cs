@@ -17,8 +17,8 @@ namespace Shop_Data.Entities
         public DateTime SeoAlias { get; set; }
         public List<ProductInCategory> ProductInCategories { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
-        public List<Cart> carts { get; set; }
-        public List<ProductTransaction> ProductTransactions { get; set; }
+        public List<Cart> Carts { get; set; }
+        public List<ProductTranslation> ProductTranslations { get; set; }
         public List<ProductImage> ProductImages { get; set; }
     }
 }

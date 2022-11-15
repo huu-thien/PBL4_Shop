@@ -9,7 +9,7 @@ namespace Shop_Data.Entities
 {
     public class Transaction
     {
-        public int ID {get; set;}
+        public int Id {get; set;}
         public DateTime TransactionDate {get; set;}
         public string ExternalTransactionId {get; set;}
         public decimal Amount {get; set;}

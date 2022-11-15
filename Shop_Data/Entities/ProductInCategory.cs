@@ -8,9 +8,9 @@ namespace Shop_Data.Entities
 {
     public class ProductInCategory
     {
-        public int Productid { get; set; }
+        public int ProductId { get; set; }
         public Product Product { get; set; }
-        public int Categoryid { get; set; } 
+        public int CategoryId { get; set; } 
         public Category Category { get; set; }
     }
 }
