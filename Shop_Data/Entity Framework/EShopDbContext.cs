@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Shop_Data.Configurations;
 using Shop_Data.Entities;
+using Shop_Data.Extensions;
 
 namespace Shop_Data.Entity_Framework
 {
-    public class EShopDbContext : DbContext
+    public class EShopDbContext : IdentityDbContext<AppUser,AppRole,Guid> 
     {
         public EShopDbContext(DbContextOptions options) : base(options)
         {
@@ -35,20 +38,28 @@ namespace Shop_Data.Entity_Framework
             modelBuilder.ApplyConfiguration(new SlideConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
 
-            //modelBuilder.Seed();
+            modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClaims");
+            modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("AppUserRoles").HasKey(x => new {x.UserId,x.RoleId});
+            modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("AppUserLogins").HasKey(x => x.UserId);
+            modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("AppRoleClaims");
+            modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("AppUserTokens").HasKey(x => x.UserId);
+
+            //Data seeding
+            modelBuilder.Seed();
             //base.OnModelCreating(modelBuilder);
         }
+        public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Product> AppConfigs { get; set; }
+        public DbSet<AppConfig> AppConfigs { get; set; }
         public DbSet<Cart> Carts { get; set; }  
-        public DbSet<CategoryTranslation> CategoryTransactions { get; set; }
+        public DbSet<CategoryTranslation> CategoryTranslations { get; set; }
         public DbSet<ProductInCategory> ProductInCategories { get; set; }
         public DbSet<Contact> Contacts { get; set; }
-        public DbSet<Language> languages { get; set; }
+        public DbSet<Language> Languages { get; set; }
         public DbSet<Order> Orders { get; set; }    
         public DbSet<OrderDetail> OrderDetails { get; set; }
-        public DbSet<ProductTranslation> ProductTransactions { get; set; }
+        public DbSet<ProductTranslation> ProductTranslations { get; set; }             
         public DbSet<Promotion> Promotions { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }

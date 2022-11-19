@@ -12,7 +12,7 @@ namespace Shop_Data.Entities
         public int ProductId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public decimal Details { get; set; }
+        public string Details { get; set; }
         public string SeoDescription { get; set; }
         public string SeoTitle { get; set; }
         public string SeoAlias { get; set; }

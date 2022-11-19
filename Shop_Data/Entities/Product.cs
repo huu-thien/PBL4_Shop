@@ -14,7 +14,7 @@ namespace Shop_Data.Entities
         public decimal OriginalPrice { get; set; }
         public int Stock { get; set; }
         public int ViewCount { get; set; }
-        public DateTime SeoAlias { get; set; }
+        public DateTime DateCreated { get; set; }
         public List<ProductInCategory> ProductInCategories { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
         public List<Cart> Carts { get; set; }
