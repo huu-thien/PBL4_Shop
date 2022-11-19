@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Shop_Data.Entity_Framework;
 
@@ -11,9 +12,10 @@ using Shop_Data.Entity_Framework;
 namespace Shop_Data.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    partial class EShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221115195944_AspNetcoreIdentityDatabase")]
+    partial class AspNetcoreIdentityDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,13 +99,6 @@ namespace Shop_Data.Migrations
                     b.HasKey("UserId", "RoleId");
 
                     b.ToTable("AppUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
-                            RoleId = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc")
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
@@ -185,7 +180,7 @@ namespace Shop_Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "33d2a0fc-80db-40ea-b49a-d1c23807091b",
+                            ConcurrencyStamp = "fe7e740d-7444-48a8-9469-78949437748f",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -262,7 +257,7 @@ namespace Shop_Data.Migrations
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "af1ea47a-5169-43c2-9f4a-a49ec69236f5",
+                            ConcurrencyStamp = "1bb5380e-a6e2-47c7-86ec-f6a442412be4",
                             Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
@@ -271,7 +266,7 @@ namespace Shop_Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEO3Wo/m7Mn3/Wmxi0fFpurPdcJYmqwgPzVE2Y3oP4X9ome2LdqokfQQGMhvLp3D8Rw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAED/DA7bUWrxAn8NzQvnduYI0dGiwSYHbDyb4v/HNbTnAmKmsOOLDQ+fa/Kj7Hc4oiw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -609,7 +604,7 @@ namespace Shop_Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2022, 11, 16, 3, 7, 42, 930, DateTimeKind.Local).AddTicks(9838),
+                            DateCreated = new DateTime(2022, 11, 16, 2, 59, 43, 323, DateTimeKind.Local).AddTicks(1329),
                             OriginalPrice = 15000000m,
                             Price = 20000000m,
                             Stock = 5,
