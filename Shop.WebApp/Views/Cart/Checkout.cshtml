@@ -1,0 +1,133 @@
+﻿@model CheckoutViewModel
+@{
+    ViewData["Title"] = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+@{
+    var culture = CultureInfo.CurrentCulture.Name;
+}
+<style>
+    input[type="text"], input[type="email"] {
+        font-size: 15px;
+        padding: 8px 20px;
+
+    }
+    .control-label {
+        font-size: 16px;
+        color: #111;
+    }
+    .btn-pay {
+        background-color: #f7085a !important;
+        display: inline-block;
+        padding: 6px 20px;
+        font-size: 15px;
+        line-height: 20px;
+        color: #fff;
+        text-align: center;
+        text-shadow: 0 1px 1px rgb(255 255 255 / 75%);
+        vertical-align: middle;
+        cursor: pointer;
+        border: 1px solid #bbb;
+        border-radius: 8px;
+        text-decoration: none;
+        letter-spacing: 1px;
+    }
+</style>
+<ul class="breadcrumb">
+    <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+    <li class="active"> SHOPPING CART</li>
+</ul>
+<h3>
+    <localize>SHOPPING CART</localize> [ <small>@Model.CartItems.Count Item(s) </small>]
+    <a href="/" class="btn btn-large pull-right">
+        <i class="icon-arrow-left"></i> 
+        <localize>Continue Shopping</localize> 
+    </a>
+</h3>
+<hr class="soft" />
+@if (TempData["SuccessMsg"] != null)
+{
+    <span class="alert alert-success">@TempData["SuccessMsg"]</span>
+}
+else
+{
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th><localize>Product</localize></th>
+                <th><localize>Description</localize></th>
+                <th><localize>Quantity</localize></th>
+                <th><localize>Price</localize></th>
+                <th><localize>Total</localize></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CartItems)
+            {
+                <tr>
+                    <td> <img width="60" src="@(Configuration["BaseAddress"] + item.Image)" alt="" /></td>
+                    <td>@item.Description</td>
+                    <td>
+                        @item.Quantity
+                    </td>
+                    <td>@item.Price</td>
+                    <td>@(item.Quantity*item.Price)</td>
+                </tr>
+            }
+
+            <tr>
+                <td colspan="4" style="text-align:right"><strong><localize>TOTAL</localize> =</strong></td>
+                <td class="label label-important" style="display:block"> <strong> @Model.CartItems.Sum(x => x.Quantity * x.Price).ToString("N0")</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered">
+        <tr><th><localize>ESTIMATE YOUR SHIPPING</localize> </th></tr>
+        <tr>
+            <td>
+                <form class="form-horizontal" action="/@culture/Cart/Checkout" method="post">
+                    <div class="control-group">
+                        <label class="control-label" for="inputCountry"><localize>Name</localize> </label>
+                        <div class="controls">
+                            <input type="text" id="inputCountry" asp-for="CheckoutModel.Name" placeholder="">
+                            <span asp-validation-for="CheckoutModel.Name" class="text-error"></span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputCountry"><localize>Address</localize> </label>
+                        <div class="controls">
+                            <input type="text" id="inputCountry" asp-for="CheckoutModel.Address" placeholder="">
+                            <span asp-validation-for="CheckoutModel.Address" class="text-error"></span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="inputCountry"><localize>Email</localize> </label>
+                        <div class="controls">
+                            <input type="text" id="inputCountry" asp-for="CheckoutModel.Email" placeholder="">
+                            <span asp-validation-for="CheckoutModel.Email" class="text-error"></span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="inputCountry"><localize>PhoneNumber</localize> </label>
+                        <div class="controls">
+                            <input type="text" id="inputCountry" asp-for="CheckoutModel.PhoneNumber" placeholder="">
+                            <span asp-validation-for="CheckoutModel.PhoneNumber" class="text-error"></span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="controls">
+                            <button type="submit" class="btn-pay"><localize>Đặt hàng</localize> </button>
+                        </div>
+                    </div>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <a href="/" class="btn btn-large"><i class="icon-arrow-left"></i> <localize>Continue Shopping</localize> </a>
+}

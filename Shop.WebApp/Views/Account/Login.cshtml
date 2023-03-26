@@ -1,0 +1,98 @@
+﻿@model Shop_ViewModels.System.Users.LoginRequest
+@{
+	ViewData["Title"] = "Login";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+    var culture = CultureInfo.CurrentCulture.Name;
+}
+<style>
+	.btn-signin {
+		background-color: #f7085a !important;
+        display: inline-block;
+        padding: 8px 16px;
+        font-size: 15px;
+        line-height: 20px;
+        color: #fff;
+        text-align: center;
+        text-shadow: 0 1px 1px rgb(255 255 255 / 75%);
+        vertical-align: middle;
+        cursor: pointer;
+        border: 1px solid #bbb;
+        border-radius: 8px;
+        text-decoration: none;
+		letter-spacing: 1px;
+    }
+    .btn-signin:hover {
+        background-color: #f7285a;
+    }
+	.btn-register {
+		background-color: #003366 !important;
+        display: inline-block;
+        padding: 8px 16px;
+        font-size: 15px;
+        line-height: 20px;
+        color: #fff;
+        text-align: center;
+        text-shadow: 0 1px 1px rgb(255 255 255 / 75%);
+        vertical-align: middle;
+        cursor: pointer;
+        border: 1px solid #bbb;
+        border-radius: 8px;
+        text-decoration: none;
+		letter-spacing: 1px;
+    }
+    .btn-register:hover a{
+        background-color: #f7285a !important;
+		text-decoration: none !important;
+    }
+	.control-label {
+		font-size: 16px;
+	}
+	a, a:hover {
+		color: #fff;
+		text-decoration: none;
+	}
+</style>
+
+
+<ul class="breadcrumb">
+		<li><a href="/">Home</a> <span class="divider">/</span></li>
+		<li class="active">Login</li>
+    </ul>
+	<h2> LOGIN</h2>	
+	<hr class="soft"/>
+	
+	<div class="row">
+		
+		<div class="span4">
+			<div class="well " style="width:175%;">
+			<h3 style="color:#003366 ">MUA SẮM THẬT VUI VỚI TV TECHNOLOGY</h3>
+			<form action="/@culture/Account/Login" method="post">
+			  <div class="control-group">
+				<label class="control-label" for="UserName">Tên đăng nhập</label>
+				<div class="controls">
+				  <input class="span3"  type="text" asp-for="UserName" placeholder="UserName" style="padding: 6px 14px;">
+				  <br>
+				  <span asp-validation-for="UserName" class="text-error"></span>
+				</div>
+			  </div>
+			  <div class="control-group">
+				<label class="control-label" for="Password">Mật khẩu</label>
+				<div class="controls">
+				  <input type="password" class="span3"   asp-for="Password" placeholder="Password" style="padding: 6px 14px;">
+				  <br>
+				  <span asp-validation-for="Password" class="text-error"></span>
+				</div>
+			  </div>
+			  <div class="control-group">
+				<div class="controls">
+				  <button type="submit" class="btn-signin">Sign in</button> 
+				  <form action="register.html">	
+						<a href="/@culture/Account/register" type="submit" class="btn-register" style="margin-left: 20px;" >Create Your Account</a>
+					</form>
+				</div>
+			  </div>
+			</form>
+		</div>
+		</div>
+	</div>	
+

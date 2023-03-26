@@ -5,5 +5,17 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EShop_ViewModels\Shop_ViewModels.csproj" />
+    <ProjectReference Include="..\Shop_Data\Shop_Data.csproj" />
+    <ProjectReference Include="..\Shop_Utilities\Shop_Utilities.csproj" />
+  </ItemGroup>
 
 </Project>
